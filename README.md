@@ -1,2 +1,1 @@
-# TheDanielKogan.github.io
-My Public Website
+My current website
