@@ -1,0 +1,32 @@
+.center {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+}
+
+.user {
+    position:relative;
+    bottom: 65px;
+    right: 142px;
+}
+
+.pass {
+    position:relative;
+    bottom: 35px;
+    right: 323px;
+}
+
+.errormsg {
+   position:relative;
+   right: 179px;
+   text-align:center;
+}
+
+.login {
+    position:relative;
+}
+
+textarea {
+    
+    resize:none;
+}
