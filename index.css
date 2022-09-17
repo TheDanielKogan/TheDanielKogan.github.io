@@ -1,13 +1,29 @@
 .center {
     display:table;
     margin: auto;
-    padding-top:20%;
+    padding-top:12.5%;
     
 }
 
+h1 {
+    padding-bottom: 20%;
+    text-align: center;
+}
 
 .user {
+    display:table;
+    margin: auto;
     margin-bottom: 12.5px;
+}
+
+.text {
+    display:table;
+    margin: auto;
+}
+
+.pass {
+    display:table;
+    margin: auto;
 }
 
 .errormsg {
