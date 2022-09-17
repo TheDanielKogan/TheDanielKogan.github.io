@@ -1,32 +1,22 @@
 .center {
-    position: absolute;
-    top: 40%;
-    left: 45%;
+    display:table;
+    margin: auto;
+    padding-top:20%;
+    
 }
+
 
 .user {
-    position:relative;
-    bottom: 65px;
-    right: 142px;
-}
-
-.pass {
-    position:relative;
-    bottom: 35px;
-    right: 323px;
+    margin-bottom: 12.5px;
 }
 
 .errormsg {
-   position:relative;
-   right: 179px;
-   text-align:center;
+    text-align: center;
 }
 
 .login {
-    position:relative;
-}
-
-textarea {
-    
-    resize:none;
+    display:table;
+    margin:auto;
+    margin-top: 15px;
+    margin-bottom:20px;
 }
