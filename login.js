@@ -24,10 +24,10 @@ let class2 = document.getElementById("class2")
 let class3 = document.getElementById("class3")
 let class4 = document.getElementById("class4")
 
-class1.innerHTML = account[0]["name"]
-class2.innerHTML = account[1]["name"]
-class3.innerHTML = account[2]["name"]
-class4.innerHTML = account[3]["name"]
+class1.innerHTML = account[0]["name"] + "<br />" + account[0]["code"]
+class2.innerHTML = account[1]["name"] + "<br />" + account[1]["code"]
+class3.innerHTML = account[2]["name"] + "<br />" + account[2]["code"]
+class4.innerHTML = account[3]["name"] + "<br />" + account[3]["code"]
 //period
 let p1 = document.getElementById("c1p")
 let p2 = document.getElementById("c2p")
@@ -89,6 +89,9 @@ p4.innerHTML = month
 
 //                  Assignments
 
+
+
+
 let as1 = document.getElementById("c1a")
 let as2 = document.getElementById("c2a")
 let as3 = document.getElementById("c3a")
@@ -96,6 +99,11 @@ let as4 = document.getElementById("c4a")
 let table = document.getElementById("table")
 let astable = document.getElementById("assignmenttable")
 let thetable = document.getElementById("thetable")
+
+as1.innerHTML = 'Click Here(' + account[0]["assignments"].length + ")"
+as2.innerHTML = 'Click Here(' + account[1]["assignments"].length + ")"
+as3.innerHTML = 'Click Here(' + account[2]["assignments"].length + ")"
+as4.innerHTML = 'Click Here(' + account[3]["assignments"].length + ")"
 
 function displayAssignments(classnum) {
     for (let i = 0; i < account[classnum]["assignments"].length; i++) {
