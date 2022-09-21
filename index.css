@@ -1,0 +1,47 @@
+.center {
+    display:table;
+    margin: auto;
+    padding-top:12.5%;
+    
+}
+
+h1 {
+    padding-bottom: 20%;
+    text-align: center;
+}
+
+.username {
+    display:table;
+    margin: auto;
+    margin-bottom: 12.5px;
+}
+
+.text {
+    display: block;
+    text-align: center;
+}
+
+
+.password {
+    display:table;
+    margin: auto;
+}
+
+
+img {
+    position: absolute;
+    margin-left: 17.5rem;
+    margin-top: -1.6rem;
+
+}
+
+.errormsg {
+    text-align: center;
+}
+
+.login {
+    display:table;
+    margin:auto;
+    margin-top: 15px;
+    margin-bottom:20px;
+}

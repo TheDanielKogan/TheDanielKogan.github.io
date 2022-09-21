@@ -1,0 +1,56 @@
+
+.logoutbtn {
+    float: right;
+    margin-left: 20px;
+    color:blue;
+    text-decoration:underline;
+    cursor:pointer
+
+}
+.backbtn {
+    text-align: center;
+    color:blue;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.logouttext {
+    float:right;
+}
+.table {
+    margin: auto;
+    padding-top:20%;
+}
+
+.assignmenttable {
+    position: relative;
+    margin: auto;
+    padding-top: 20%;
+    display:none;
+}
+
+.assignment {
+    color: blue;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+table {
+    margin: auto;
+    
+    border: 2px solid;
+    border-collapse: collapse;
+    letter-spacing: 0.1px;
+}
+
+td {
+    border:2px solid;
+    padding: 10px 20px;
+    text-align:start;
+}
+
+th {
+    border:2px solid;
+    padding: 10px 20px;
+    text-align:center;
+}
