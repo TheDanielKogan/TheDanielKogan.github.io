@@ -99,16 +99,20 @@ let as4 = document.getElementById("c4a")
 let table = document.getElementById("table")
 let astable = document.getElementById("assignmenttable")
 let thetable = document.getElementById("thetable")
+let classname = document.getElementById("assignmentclass")
+let classmark = document.getElementById("assignmark")
 
 as1.innerHTML = 'Click Here(' + account[0]["assignments"].length + ")"
 as2.innerHTML = 'Click Here(' + account[1]["assignments"].length + ")"
 as3.innerHTML = 'Click Here(' + account[2]["assignments"].length + ")"
 as4.innerHTML = 'Click Here(' + account[3]["assignments"].length + ")"
-
+let currentclass = 0;
 function displayAssignments(classnum) {
+    currentclass = classnum
     for (let i = 0; i < account[classnum]["assignments"].length; i++) {
         let newrow = document.createElement("tr")
         thetable.appendChild(newrow)
+        
         for (let i = 0; i < 7; i++) {
             let newtext = document.createElement("td")
             if (i == 0) {newtext.innerHTML = account[classnum]["assignments"][i]["name"]}
@@ -118,10 +122,12 @@ function displayAssignments(classnum) {
             else if (i == 4){newtext.innerHTML = account[classnum]["assignments"][i]["C"]["get"] + "/" + account[classnum]["assignments"][i]["C"]["total"] + "<br /> Weight: " + account[classnum]["assignments"][i]["C"]["weight"]} 
             else if (i == 5){newtext.innerHTML = account[classnum]["assignments"][i]["A"]["get"] + "/" + account[classnum]["assignments"][i]["A"]["total"] + "<br /> Weight: " + account[classnum]["assignments"][i]["A"]["weight"]} 
             else if (i == 6){newtext.innerHTML = account[classnum]["assignments"][i]["O"]["get"] + "/" + account[classnum]["assignments"][i]["O"]["total"] + "<br /> Weight: " + account[classnum]["assignments"][i]["O"]["weight"]} 
-            
             newrow.appendChild(newtext)
         }
     }
+    classname.innerHTML = account[classnum]["name"]
+    if (account[classnum]["overall_mark"] != null) {classmark.innerHTML = "Overall Mark: " + account[classnum]["overall_mark"].toFixed(1) + "%"}
+    else {classmark.textContent = "Overall Mark: N/A"}
 }
 
 as1.onclick = () => {
@@ -149,4 +155,47 @@ let backbtn = document.getElementById("backbtn")
 backbtn.onclick = () => {
     astable.style.display = "none"
     table.style.display = "block"
+    for(let i = 0; i < thetable.childNodes.length; i++) {
+        if (thetable.lastChild.nodeName == "TR"){
+            thetable.removeChild(thetable.lastChild)
+        }
+    }
+}
+
+// fake assignment
+
+let fake = document.getElementById("fakebutton")
+
+fake.onclick = function(obj) {
+    let aname = document.getElementById("aname")
+    let final = document.getElementById("finalmark")
+    if (aname.value != "" && final.value != "" && parseFloat(final.value) > 0) {
+        let newrow = document.createElement("tr")
+        thetable.appendChild(newrow)
+        for (let i = 0; i < 7; i++) {
+            let newtext = document.createElement("td")
+            newtext.style.background = "darkgray"
+            if (i == 0) {newtext.innerText = aname.value}
+            if (i == 1) {newtext.innerText = final.value + "%"}
+            if (i == 2) {newtext.innerText = "N/A"}
+            if (i == 3) {newtext.innerText = "N/A"}
+            if (i == 4) {newtext.innerText = "N/A"}
+            if (i == 5) {newtext.innerText = "N/A"}
+            if (i == 6) {newtext.innerText = "N/A"}
+            newrow.append(newtext)
+        }
+        let mark
+        let prevmark = classmark.textContent.split(' ')[2].replace("%","")
+        if (prevmark != "N/A") {
+            mark = (parseFloat(prevmark) + parseFloat(final.value)) / 2
+        }
+        else {
+            mark = final.value
+        }
+        classmark.textContent = "Overall Mark: " + mark + "%"
+        aname.value = ""
+        final.value = ""
+    }
+    
+
 }
