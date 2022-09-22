@@ -7,11 +7,20 @@
     cursor:pointer
 
 }
+.midtext {
+    text-align: center;
+}
+
+.text-margin {
+    margin-left: 4px;
+}
+
 .backbtn {
     text-align: center;
     color:blue;
     text-decoration: underline;
     cursor:pointer;
+    margin-top: 5px;
 }
 
 .logouttext {
@@ -19,13 +28,13 @@
 }
 .table {
     margin: auto;
-    padding-top:20%;
+    padding-top:15%;
 }
 
 .assignmenttable {
     position: relative;
     margin: auto;
-    padding-top: 20%;
+    padding-top: 10%;
     display:none;
 }
 
@@ -33,6 +42,23 @@
     color: blue;
     text-decoration:underline;
     cursor:pointer;
+}
+
+.bottom {
+    display: table;
+    margin-top: 10px;
+}
+
+.fakebutton {
+    width: 75px;
+    display: block;
+    margin: 15px auto;
+}
+
+.fake {
+    padding-top: 40px;
+    display: table;
+    margin: auto;
 }
 
 table {
