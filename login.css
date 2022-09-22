@@ -1,14 +1,19 @@
 
 .logoutbtn {
-    float: right;
     margin-left: 20px;
     color:blue;
     text-decoration:underline;
-    cursor:pointer
-
+    text-align: right;
+    cursor:pointer;
+    display:inline;
 }
 .midtext {
     text-align: center;
+}
+
+.logout {
+    text-align: right;
+    
 }
 
 .text-margin {
@@ -24,7 +29,8 @@
 }
 
 .logouttext {
-    float:right;
+    text-align: right;
+    display:inline;
 }
 .table {
     margin: auto;
@@ -32,6 +38,7 @@
 }
 
 .assignmenttable {
+    order: 2;
     position: relative;
     margin: auto;
     padding-top: 10%;
