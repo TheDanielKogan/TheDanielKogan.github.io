@@ -11,27 +11,41 @@ h1 {
 }
 
 .username {
-    display:table;
+    display:flex;
+    border-radius:16px;
+    border-color:black;
+    border-width:2.75px;
     margin: auto;
     margin-bottom: 12.5px;
+    text-align: center;
+    
 }
+
+
 
 .text {
     display: block;
     text-align: center;
+    margin-bottom: 3px;
 }
 
 
 .password {
-    display:table;
+    display:flex;
+    border-radius:16px;
+    border-color:black;
+    border-width:2.75px;
     margin: auto;
+    margin-bottom: 12.5px;
+    text-align: center;
 }
 
 
-img {
+.pic{
+    display: inline;
     position: absolute;
-    margin-left: 17.5rem;
-    margin-top: -1.6rem;
+    margin-left: 17.5em;
+    margin-top: -2.45em;
 
 }
 
@@ -39,9 +53,31 @@ img {
     text-align: center;
 }
 
+.login:hover, .login:active, .login:focus-visible {
+    background:lightgray;
+}
+
 .login {
     display:table;
     margin:auto;
+    background: white;
+    border-radius: 25px;
+    width: 100px;
+    height: 35px;
+    border:1px, black;
     margin-top: 15px;
     margin-bottom:20px;
+    text-align: left;
+}
+
+.btn-text {
+    display:inline;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.loginicon {
+    display: inline;
+    margin-left: 4.33em;
 }
