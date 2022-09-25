@@ -35,8 +35,9 @@
 .table {
     margin: auto;
     padding-top:15%;
+    
+    
 }
-
 .assignmenttable {
     order: 2;
     position: relative;
@@ -59,8 +60,19 @@
 .fakebutton {
     width: 75px;
     display: block;
+    border-radius: 25px;
+    width: 100px;
+    height: 35px;
+    border:1px, black;
     margin: 15px auto;
+    background: white;
 }
+
+.fakebutton:hover, .fakebutton:active, .fakebutton:focus-visible {
+    background:lightgray;
+    
+}
+
 
 .fake {
     padding-top: 40px;
@@ -70,7 +82,6 @@
 
 table {
     margin: auto;
-    
     border: 2px solid;
     border-collapse: collapse;
     letter-spacing: 0.1px;
@@ -87,3 +98,26 @@ th {
     padding: 10px 20px;
     text-align:center;
 }
+
+.fakeassignment:focus-visible:placeholder-shown{
+    border-color:red;
+    outline: 0;
+}
+
+.fakeassignment:placeholder-shown{
+    border-color:red;
+    outline: 0;
+}
+
+.fakeassignment {
+    border-color: lightgreen;
+    border-radius:5px;
+    outline: 0
+}
+
+
+.fakemark {
+    outline:0;
+    border-radius:5px;
+}
+
