@@ -165,11 +165,21 @@ backbtn.onclick = () => {
 // fake assignment
 
 let fake = document.getElementById("fakebutton")
+let final = document.getElementById("finalmark")
+
+setInterval(() => {
+    if (parseFloat(final.value) > -1) {
+        final.style.borderColor = "lightgreen"
+    }
+    else {
+        final.style.borderColor="red"
+    }
+}, 100);
 
 fake.onclick = function(obj) {
     let aname = document.getElementById("aname")
-    let final = document.getElementById("finalmark")
-    if (aname.value != "" && final.value != "" && parseFloat(final.value) > 0) {
+    
+    if (aname.value != "" && final.value != "" && parseFloat(final.value) >= 0) {
         let newrow = document.createElement("tr")
         thetable.appendChild(newrow)
         for (let i = 0; i < 7; i++) {
@@ -196,6 +206,7 @@ fake.onclick = function(obj) {
         aname.value = ""
         final.value = ""
     }
+    
     
 
 }
