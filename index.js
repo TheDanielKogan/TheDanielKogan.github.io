@@ -65,4 +65,3 @@ btn.onclick = function(self) {
     xhr.send(sendingData)
 }
 
-
