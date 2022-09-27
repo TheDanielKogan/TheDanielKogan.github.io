@@ -1,13 +1,22 @@
 .center {
     display:table;
-    margin: auto;
-    padding-top:12.5%;
-    
+    margin:auto;
+    margin-top: 12rem;
 }
 
 h1 {
     padding-bottom: 20%;
     text-align: center;
+    padding-top: 10%;
+}
+
+.background {
+    background: rgb(225, 245, 225);
+    box-shadow: 0px 0px 10px 3px #000;
+    height: 27.5rem;
+    bottom: 50px;
+    width: 500px;
+    border-radius: 40px;
 }
 
 .username {
@@ -21,7 +30,53 @@ h1 {
     
 }
 
+.shape {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 30% 5% 65% 10%;
+    background: black;
+    animation-duration: 25s;
+    animation-name:test;
+    animation-iteration-count: infinite;
+    animation-direction:normal;
+    animation-timing-function: linear;
+}
 
+.first {
+    background: rgb(150, 150, 255);;
+    top: -100px;
+    left: -125px;
+    
+}
+
+@keyframes test {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+.second {
+    background: rgb(255, 150, 150);;
+    top: -125px;
+    right: -65px;
+    
+}
+
+.third {
+    background: rgb(200, 100, 200);
+    left: -65px;
+    bottom:-85px;
+}
+
+.fourth {
+    background: rgb(150, 255, 150);
+    right: -99px;
+    bottom: -55px;
+}
 
 .text {
     display: block;
@@ -42,9 +97,8 @@ h1 {
 
 
 .pic{
-    display: inline;
-    position: absolute;
-    margin-left: 17.5em;
+    display: block;
+    margin-left: 21.5em;
     margin-top: -2.45em;
 
 }
