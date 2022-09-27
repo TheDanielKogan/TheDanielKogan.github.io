@@ -8,22 +8,27 @@
     <link type="text/css" rel="stylesheet" href="index.css" media="all">
 </head>
 <body>
-    
+    <div class = "shape first"></div>
+    <div class = "shape second"></div>
     <div class="center">
-        <h1>Unofficial Teachassist Web</h1>
-        <form id = "form" >
-            <label for = "username" class = "text">Username</label>
-            <input maxlength="10" class = "username" type = "text" id ="username" autocomplete="on">
-            <label for = "current-password" class = "text">Password</label>
-            
-            <input type="password" name = "current-password"maxlength="10" class = "password" id = "current-password" autocomplete="current-password">
-            <img src ="show.png" width = "32" class = "pic" onclick="showPassword(this)">
-            <div></div>
-            
-        </form>
-        <button id ="submit" class="login"><div class = "btn-text">Log In</div><img src = "next.png" width = "28" class = "loginicon"></button>
-        <div class = "errormsg" id = "msg"></div>
+        <div class = "background">
+            <h1>Unofficial Teachassist Web</h1>
+            <form id = "form" >
+                <label for = "username" class = "text">Username</label>
+                <input maxlength="10" class = "username" type = "text" id ="username" autocomplete="on">
+                <label for = "current-password" class = "text">Password</label>
+
+                <input type="password" name = "current-password"maxlength="10" class = "password" id = "current-password" autocomplete="current-password">
+                <img src ="show.png" width = "32" class = "pic" onclick="showPassword(this)">
+                <div></div>
+
+            </form>
+            <button id ="submit" class="login"><div class = "btn-text">Log In</div><img src = "next.png" width = "28" class = "loginicon"></button>
+            <div class = "errormsg" id = "msg"></div>
+        </div>
     </div>
+    <div class = "shape third"></div>
+    <div class = "shape fourth"></div>
 </body>
 
 <script src="index.js"></script>
