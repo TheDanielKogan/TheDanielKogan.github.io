@@ -16,103 +16,46 @@ let logoutbtn = document.getElementById("logoutbtn")
 logoutbtn.onclick = () => {
     window.location.href = "index.html"
 }
-let offset = 0;
-for (let i = 0; i < account.length; i++) {
-    if (!account[i]["block"].includes("P")) {
-        offset += 1
+let table = document.getElementById("table")
+let astable = document.getElementById("assignmenttable")
+let classtable = document.getElementById("classtable")
+for (let k = 0; k < account.length; k++) {
+    let row = document.createElement("tr")
+    classtable.appendChild(row)
+    for (let q = 0; q < 7; q++) {
+        let newdata = document.createElement("td")
+        let starttime = Date.parse(account[k]["start_time"]) + 86400000
+        let date = new Date(starttime)
+        let month = date.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
+        if (q == 0) {newdata.innerHTML = account[k]["name"] + "<br />" + account[k]["code"]}
+        if (q == 1) {newdata.innerHTML = account[k]["block"]}
+        if (q == 2) {newdata.innerHTML = account[k]["room"]}
+        if (q == 3) {if (account[k]["overall_mark"] != null) {newdata.innerHTML = account[k]["overall_mark"].toFixed(1) + "%"} else {newdata.innerHTML = "N/A"}}
+        if (q == 4) {newdata.innerHTML = month}
+        starttime = Date.parse(account[k]["end_time"]) + 86400000
+        date = new Date(starttime)
+        month = date.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
+        if (q == 5) {newdata.innerHTML = month}
+        let newdiv = document.createElement("div")
+        if (q == 6) {newdiv.innerText = "Click Here(" + account[k]["assignments"].length + ")" ; newdiv.className = "assignment"; newdata.appendChild(newdiv); 
+        newdata.onclick = () => {
+            table.style.display = "none"
+            astable.style.display = "block"
+            displayAssignments(k)
+        }}
+        row.appendChild(newdata)
     }
 }
-
-
-// ALL INFO TURNED INTO TEXT
-// class name
-let class1 = document.getElementById("class1")
-let class2 = document.getElementById("class2")
-let class3 = document.getElementById("class3")
-let class4 = document.getElementById("class4")
-
-class1.innerHTML = account[0+offset]["name"] + "<br />" + account[0+offset]["code"]
-class2.innerHTML = account[1+offset]["name"] + "<br />" + account[1+offset]["code"]
-class3.innerHTML = account[2+offset]["name"] + "<br />" + account[2+offset]["code"]
-class4.innerHTML = account[3+offset]["name"] + "<br />" + account[3+offset]["code"]
-//period
-let p1 = document.getElementById("c1p")
-let p2 = document.getElementById("c2p")
-let p3 = document.getElementById("c3p")
-let p4 = document.getElementById("c4p")
-
-p1.innerHTML = account[0+offset]["block"]
-p2.innerHTML = account[1+offset]["block"]
-p3.innerHTML = account[2+offset]["block"]
-p4.innerHTML = account[3+offset]["block"]
-//room
-p1 = document.getElementById("c1r")
-p2 = document.getElementById("c2r")
-p3 = document.getElementById("c3r")
-p4 = document.getElementById("c4r")
-
-p1.innerHTML = account[0+offset]["room"]
-p2.innerHTML = account[1+offset]["room"]
-p3.innerHTML = account[2+offset]["room"]
-p4.innerHTML = account[3+offset]["room"]
-//mark
-p1 = document.getElementById("c1m")
-p2 = document.getElementById("c2m")
-p3 = document.getElementById("c3m")
-p4 = document.getElementById("c4m")
-
-if (account[0+offset]["overall_mark"] != null ) {p1.innerHTML = account[0+offset]["overall_mark"].toFixed(1) + "%"} else { p1.innerHTML = "N/A"}
-if (account[1+offset]["overall_mark"] != null ) {p2.innerHTML = account[1+offset]["overall_mark"].toFixed(1) + "%"} else { p2.innerHTML = "N/A"}
-if (account[2+offset]["overall_mark"] != null ) {p3.innerHTML = account[2+offset]["overall_mark"].toFixed(1) + "%"} else { p3.innerHTML = "N/A"}
-if (account[3+offset]["overall_mark"] != null ) {p4.innerHTML = account[3+offset]["overall_mark"].toFixed(1) + "%"} else { p4.innerHTML = "N/A"}
-//start
-p1 = document.getElementById("c1s")
-p2 = document.getElementById("c2s")
-p3 = document.getElementById("c3s")
-p4 = document.getElementById("c4s")
-
-let ms = Date.parse(account[0+offset]["start_time"]) + 86400000
-let x = new Date(ms)
-let month = x.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
-
-p1.innerHTML = month
-p2.innerHTML = month
-p3.innerHTML = month
-p4.innerHTML = month
-//end
-p1 = document.getElementById("c1e")
-p2 = document.getElementById("c2e")
-p3 = document.getElementById("c3e")
-p4 = document.getElementById("c4e")
-
-ms = Date.parse(account[0+offset]["end_time"]) + 86400000
-x = new Date(ms)
-month = x.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
-
-p1.innerHTML = month
-p2.innerHTML = month
-p3.innerHTML = month
-p4.innerHTML = month
 
 //                  Assignments
 
 
 
 
-let as1 = document.getElementById("c1a")
-let as2 = document.getElementById("c2a")
-let as3 = document.getElementById("c3a")
-let as4 = document.getElementById("c4a")
-let table = document.getElementById("table")
-let astable = document.getElementById("assignmenttable")
 let thetable = document.getElementById("thetable")
 let classname = document.getElementById("assignmentclass")
 let classmark = document.getElementById("assignmark")
 
-as1.innerHTML = 'Click Here(' + account[0+offset]["assignments"].length + ")"
-as2.innerHTML = 'Click Here(' + account[1+offset]["assignments"].length + ")"
-as3.innerHTML = 'Click Here(' + account[2+offset]["assignments"].length + ")"
-as4.innerHTML = 'Click Here(' + account[3+offset]["assignments"].length + ")"
 let currentclass = 0;
 function displayAssignments(classnum) {
     currentclass = classnum
@@ -136,26 +79,6 @@ function displayAssignments(classnum) {
     else {classmark.textContent = "Overall Mark: N/A"}
 }
 
-as1.onclick = () => {
-    table.style.display = "none"
-    astable.style.display = "block"
-    displayAssignments(0+offset)
-}
-as2.onclick = () => {
-    table.style.display = "none"
-    astable.style.display = "block"
-    displayAssignments(1+offset)
-}
-as3.onclick = () => {
-    table.style.display = "none"
-    astable.style.display = "block"
-    displayAssignments(2+offset)
-}
-as4.onclick = () => {
-    table.style.display = "none"
-    astable.style.display = "block"
-    displayAssignments(3+offset)
-}
 
 let backbtn = document.getElementById("backbtn")
 backbtn.onclick = () => {
