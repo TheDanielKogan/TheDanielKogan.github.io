@@ -65,3 +65,43 @@ btn.onclick = function(self) {
     xhr.send(sendingData)
 }
 
+let shape1 = document.getElementById("first")
+let shape2 = document.getElementById("second")
+let shape3 =document.getElementById("third")
+let shape4 =document.getElementById("fourth")
+window.onload = () => {
+    Anim()
+}
+
+setInterval(() => {
+    Anim()
+}, 10000);
+
+let array = [shape1, shape2, shape3, shape4]
+function Anim() {
+    const h = window.innerHeight - 300
+    const w = window.innerWidth - 300
+    
+    for (let i = 0; i < 4; i++) {
+        const currentheight = getComputedStyle(array[i])
+        const currentwidth = getComputedStyle(array[i])
+        const newheight = Math.floor(Math.random() * h)
+        const newwidth = Math.floor(Math.random() * w)
+        const timing = {
+            duration: 10000,
+        }
+        const animation = [
+            {top: currentheight.top, left: currentwidth.left},
+            {top: newheight + "px", left: newwidth + "px"},
+            
+        ]
+        array[i].animate(animation,timing)
+        
+    }
+    
+    
+    
+}
+
+
+
