@@ -45,9 +45,9 @@ h1 {
 
 .first {
     background: rgb(150, 150, 255);;
-    top: -100px;
-    left: -125px;
-    
+    top: 80px;
+    left: 80px;
+    z-index: -1;
 }
 
 @keyframes test {
@@ -61,21 +61,23 @@ h1 {
 
 .second {
     background: rgb(255, 150, 150);;
-    top: -125px;
-    right: -65px;
-    
+    top: 0px;
+    right: 80px;
+    z-index: -1;
 }
 
 .third {
     background: rgb(200, 100, 200);
-    left: -65px;
-    bottom:-85px;
+    left: 50px;
+    bottom:60px;
+    z-index: -1;
 }
 
 .fourth {
     background: rgb(150, 255, 150);
-    right: -99px;
-    bottom: -55px;
+    right: 80px;
+    bottom: 80px;
+    z-index: -1;
 }
 
 .text {
