@@ -7,59 +7,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teachassist</title>
     <link type="text/css" rel="stylesheet" href="login.css" media="all">
-    
 </head>
 <body>
     
-    <div class = "logout">
-        
-        <p id = "logout" class = "logouttext">
-            Signed in as:  
-        </p>
-        <p class = "logoutbtn" id = "logoutbtn">
-            Logout
-        </p>
-        
-    </div>
-    <div class = "table" id = "table">
-    <table id = "classtable">
-        <tr>
-            <th>Class Name</th>
-            <th>Period</th>
-            <th>Room</th>
-            <th>Mark</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Assignments</th>
+    <div class = "sidebar" id = "sidebar">
+        <ul>
             
-        </tr>
+        </ul>
+        <button class = "opener" id = "opener">
+            &triangleleft;
+        </button>
+    </div>
+    <div class = "logo">
+        <h1 class = "logo-text">Ta</h1>
+        <div class = "logout" id = "logout">Logout</div>
+    </div>
+
+    <div class = "header">
+        <div class = "half">
+            <div class = "header-text"><h1 class = "bold">Code:</h3> <div class = "actualtext" id = "code">ENG1D1</div></div>
+            <div class = "header-text"><h1 class = "bold">Period:</h3> <div class = "actualtext" id = "period">P1</div></div>
+            
+        </div>
+        <div class = "half">
+            <div class = "header-text"><h1 class = "bold">Room:</h3> <div class = "actualtext" id = "room">123</div></div>
+            <div class = "header-text"><h1 class = "bold">Mark:</h3> <div class = "actualtext" id = "mark">97.5%</div></div>
+        </div>
         
-    </table>
+        <div class = "half">
+            <div class = "header-text"><h1 class = "bold">Start Time:</h3> <div class = "actualtext" id = "start">September 1st 2022</div></div>
+            <div class = "header-text"><h1 class = "bold">End Time:</h3> <div class = "actualtext" id = "end">February 1st 2022</div></div>
+        </div>
     </div>
     
-    <div class = "assignmenttable" id = "assignmenttable">
-        <h2 id = "assignmentclass" class = "midtext">N/A</h2>
-        <h3 id = "assignmark" class = "midtext">N/A</h5>
-        <table id = "thetable">
+    <div class = "tasks-container" id = "tablecontainer">
+        <table id = "table">
             <tr>
-                <th>Assignment Name</th>
+                <th>Assignment <br>Name</th>
                 <th>Knowledge</th>
                 <th>Thinking</th>
                 <th>Communication</th>
                 <th>Application</th>
-                <th>Other</th>
-                
             </tr>
+
         </table>
-        <div class = "fake">
-            <input class = "text-margin fakeassignment" placeholder = "Assignment Name" type = "text" id = "aname">
-            <input class = "text-margin fakemark" placeholder = "Final Mark" type = "number" id = "finalmark">
-            
-            <input type = "button" class = "fakebutton" value = "Add" id = "fakebutton">
-        </div>
-        <p class = "backbtn" id = "backbtn">Back</p>
-        </div>
-    
+    </div>
     
 </body>
 <script src="login.js"></script>
