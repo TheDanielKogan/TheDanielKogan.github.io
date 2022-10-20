@@ -1,140 +1,140 @@
-let logout = document.getElementById("logout")
 let username = localStorage.getItem("username")
 localStorage.removeItem("username")
 let account
 if (localStorage.getItem("msg") == "success") {
     window.localStorage.setItem("msg", "")
     account = JSON.parse(window.localStorage.getItem("json"))
+    
     window.localStorage.removeItem("json")
 }
 else {
     window.location.href = "index.html"           
 }
-logout.textContent = "Logged in as: " + username
 
-let logoutbtn = document.getElementById("logoutbtn")
-logoutbtn.onclick = () => {
-    window.location.href = "index.html"
-}
-let table = document.getElementById("table")
-let astable = document.getElementById("assignmenttable")
-let classtable = document.getElementById("classtable")
-for (let k = 0; k < account.length; k++) {
-    let row = document.createElement("tr")
-    classtable.appendChild(row)
-    for (let q = 0; q < 7; q++) {
-        let newdata = document.createElement("td")
-        let starttime = Date.parse(account[k]["start_time"]) + 86400000
-        let date = new Date(starttime)
-        let month = date.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
-        if (q == 0) {newdata.innerHTML = account[k]["name"] + "<br />" + account[k]["code"]}
-        if (q == 1) {newdata.innerHTML = account[k]["block"]}
-        if (q == 2) {newdata.innerHTML = account[k]["room"]}
-        if (q == 3) {if (account[k]["overall_mark"] != null) {newdata.innerHTML = account[k]["overall_mark"].toFixed(1) + "%"} else {newdata.innerHTML = "N/A"}}
-        if (q == 4) {newdata.innerHTML = month}
-        starttime = Date.parse(account[k]["end_time"]) + 86400000
-        date = new Date(starttime)
-        month = date.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
-        if (q == 5) {newdata.innerHTML = month}
-        let newdiv = document.createElement("div")
-        if (q == 6) {newdiv.innerText = "Click Here(" + account[k]["assignments"].length + ")" ; newdiv.className = "assignment"; newdata.appendChild(newdiv); 
-        newdata.onclick = () => {
-            table.style.display = "none"
-            astable.style.display = "block"
-            displayAssignments(k)
-        }}
-        row.appendChild(newdata)
+
+// Class List Sidebar
+let publicclassidx
+let sidebar = document.getElementById("sidebar")
+if (account != null) {
+if (account.length > 0){
+    let ul = sidebar.children[0]
+    for (let i = 0; i < account.length; i++) {
+        let container = document.createElement("div")
+        container.className = "list-container"
+
+        let newitem = document.createElement("li")
+       
+        newitem.setAttribute("classidx", i.toString())
+        newitem.onclick = function() {changeInfo(newitem)}
+        newitem.parent
+        newitem.innerText = account[i]["name"]
+        let progress = document.createElement("progress")
+        progress.value = account[i]["overall_mark"]/100 ?? 0
+        if (i == 0) {
+            container.style.background = "rgb(175, 225, 175)"
+            
+        }
+        container.appendChild(newitem)
+        container.appendChild(progress)
+        ul.appendChild(container)
     }
+    publicclassidx = 0
+}
 }
 
-//                  Assignments
-
-
-
-
-let thetable = document.getElementById("thetable")
-let classname = document.getElementById("assignmentclass")
-let classmark = document.getElementById("assignmark")
-
-let currentclass = 0;
-function displayAssignments(classnum) {
-    currentclass = classnum
-    for (let j = 0; j < account[classnum]["assignments"].length; j++) {
-        let newrow = document.createElement("tr")
-        thetable.appendChild(newrow)
+function changeInfo(element) {
+    for (let i = 0; i < element.parentElement.parentElement.children.length; i++) {
+            element.parentElement.parentElement.children[i].style.background = ""
         
-        for (let i = 0; i < 6; i++) {
-            let newtext = document.createElement("td")
-            if (i == 0) {newtext.innerHTML = account[classnum]["assignments"][i]["name"]}
-            else if (i == 1){if (account[classnum]["assignments"][j]["KU"] != undefined) { newtext.innerHTML = account[classnum]["assignments"][j]["KU"][0]["get"] + "/" + account[classnum]["assignments"][j]["KU"][0]["total"] + "<br /> Weight: " + account[classnum]["assignments"][j]["KU"][0]["weight"]} }
-            else if (i == 2){if (account[classnum]["assignments"][j]["T"] != undefined) { newtext.innerHTML = account[classnum]["assignments"][j]["T"][0]["get"] + "/" + account[classnum]["assignments"][j]["T"][0]["total"] + "<br /> Weight: " + account[classnum]["assignments"][j]["T"][0]["weight"]}} 
-            else if (i == 3){if (account[classnum]["assignments"][j]["C"] != undefined) { newtext.innerHTML = account[classnum]["assignments"][j]["C"][0]["get"] + "/" + account[classnum]["assignments"][j]["C"][0]["total"] + "<br /> Weight: " + account[classnum]["assignments"][j]["C"][0]["weight"]} }
-            else if (i == 4){if (account[classnum]["assignments"][j]["A"] != undefined) { newtext.innerHTML = account[classnum]["assignments"][j]["A"][0]["get"] + "/" + account[classnum]["assignments"][j]["A"][0]["total"] + "<br /> Weight: " + account[classnum]["assignments"][j]["A"][0]["weight"]} }
-            else if (i == 5){if (account[classnum]["assignments"][j]["O"] != undefined) { newtext.innerHTML = account[classnum]["assignments"][j]["O"][0]["get"] + "/" + account[classnum]["assignments"][j]["O"][0]["total"] + "<br /> Weight: " + account[classnum]["assignments"][j]["O"][0]["weight"]} }
-            newrow.appendChild(newtext)
-        }
     }
-    classname.innerHTML = account[classnum]["name"]
-    if (account[classnum]["overall_mark"] != null) {classmark.innerHTML = "Overall Mark: " + account[classnum]["overall_mark"].toFixed(1) + "%"}
-    else {classmark.textContent = "Overall Mark: N/A"}
+    updateInfo(parseInt(element.getAttribute("classidx")))
+    element.parentElement.style.background = "rgb(175, 225, 175)"
 }
 
+function updateInfo(classIdx) {
+    if (account != null) {
+    let code = document.getElementById("code")
+    let period = document.getElementById("period")
+    let room = document.getElementById("room")
+    let mark = document.getElementById("mark")
+    let starttime = document.getElementById("start")
+    let endtime = document.getElementById("end")
 
-let backbtn = document.getElementById("backbtn")
-backbtn.onclick = () => {
-    astable.style.display = "none"
-    table.style.display = "block"
-    for(let i = 0; i < thetable.childNodes.length; i++) {
-        if (thetable.lastChild.nodeName == "TR"){
-            thetable.removeChild(thetable.lastChild)
-        }
-    }
-}
-
-// fake assignment
-
-let fake = document.getElementById("fakebutton")
-let final = document.getElementById("finalmark")
-
-setInterval(() => {
-    if (parseFloat(final.value) > -1) {
-        final.style.borderColor = "lightgreen"
+    code.innerHTML = account[classIdx]["code"] ?? "N/A"
+    period.innerHTML = account[classIdx]["block"] ?? "N/A"
+    room.innerHTML = account[classIdx]["room"] ?? "N/A"
+    let overallmark = account[classIdx]["overall_mark"]
+    if (overallmark == undefined) {
+        overallmark = "N/A"
     }
     else {
-        final.style.borderColor="red"
+        overallmark = parseFloat(overallmark).toFixed(1) + "%"
     }
-}, 100);
+    mark.innerHTML = overallmark
 
-fake.onclick = function(obj) {
-    let aname = document.getElementById("aname")
-    
-    if (aname.value != "" && final.value != "" && parseFloat(final.value) >= 0) {
+    thedate = Date.parse(account[classIdx]["start_time"]) + 86400000
+    thedate = new Date(thedate)
+    readabledate = thedate.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
+    starttime.innerHTML = readabledate
+
+    thedate = Date.parse(account[classIdx]["end_time"]) + 86400000
+    thedate = new Date(thedate)
+    readabledate = thedate.toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'})
+    endtime.innerHTML = readabledate
+
+    changeAssignments(classIdx)
+    }
+}
+updateInfo(0)
+
+function changeAssignments(classIdx) {
+    let insidetable = document.getElementById("table")
+    for (let i = 0; i < insidetable.children.length; i++) {
+        if (insidetable.lastChild.nodeName != "TBODY")
+        insidetable.removeChild(insidetable.lastChild)
+    }
+    for (let i = 0; i < account[classIdx]['assignments'].length; i++) {
         let newrow = document.createElement("tr")
-        thetable.appendChild(newrow)
-        for (let i = 0; i < 6; i++) {
-            let newtext = document.createElement("td")
-            newtext.style.background = "darkgray"
-            if (i == 0) {newtext.innerHTML = aname.value + " <br /> " + final.value + "%"}
-            if (i == 1) {newtext.innerText = ""}
-            if (i == 2) {newtext.innerText = ""}
-            if (i == 3) {newtext.innerText = ""}
-            if (i == 4) {newtext.innerText = ""}
-            if (i == 5) {newtext.innerText = ""}
-            newrow.append(newtext)
+        let info = [
+            account[classIdx]['assignments'][i]["name"],
+            account[classIdx]['assignments'][i]['KU'][0]["get"] + "/" + account[classIdx]['assignments'][i]['KU'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['KU'][0]["weight"],
+            account[classIdx]['assignments'][i]['T'][0]["get"] + "/" + account[classIdx]['assignments'][i]['T'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['T'][0]["weight"],
+            account[classIdx]['assignments'][i]['C'][0]["get"] + "/" + account[classIdx]['assignments'][i]['C'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['C'][0]["weight"],
+            account[classIdx]['assignments'][i]['A'][0]["get"] + "/" + account[classIdx]['assignments'][i]['A'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['A'][0]["weight"],
+            
+        ]
+        for (let j = 0; j < 5; j++) {
+            let newinfo = document.createElement('td')
+            newinfo.innerHTML = info[j]
+            newrow.appendChild(newinfo)
         }
-        let mark
-        let prevmark = classmark.textContent.split(' ')[2].replace("%","")
-        if (prevmark != "N/A") {
-            mark = (parseFloat(prevmark) + parseFloat(final.value)) / 2
-        }
-        else {
-            mark = final.value
-        }
-        classmark.textContent = "Overall Mark: " + mark + "%"
-        aname.value = ""
-        final.value = ""
+        insidetable.appendChild(newrow)
     }
-    
-    
+}
 
+//logout btn
+
+let logout = document.getElementById("logout")
+logout.onclick = () => {
+    window.location.href = "index.html"
+}
+
+// Sidebar open/close
+
+let tablecontainer = document.getElementById("tablecontainer")
+let opener = document.getElementById("opener")
+let opened = true
+opener.onclick = () => {
+    if (opened == true) {
+        tablecontainer.style.left = "5em"
+        sidebar.style.left = "-10em"
+        opener.innerHTML = "&triangleright;"
+        opened = false
+    }
+    else {
+        tablecontainer.style.left = "15em"
+        sidebar.style.left = "0em"
+        opener.innerHTML = "&triangleleft;"
+        opened = true
+    }
 }
