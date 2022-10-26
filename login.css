@@ -71,11 +71,29 @@ li {
 
 
 .header-text {
-    font-size: calc(2.25vmin);
+    font-size: 18pt;
     display: block;
     margin-left: 2em;
     margin-top: 0.5em;  
      
+}
+
+.info-container {
+    margin-top: 11.5em;
+    margin-left: 13em;
+    font-size:14pt;
+    display:flex;
+}
+
+.colorind {
+    width: 50px;
+    height: 50px;
+    background: rgb(255,200,200);
+    margin-right: 0.5em;
+    margin-top: -0.75em;
+    border: 2px solid;
+    border-radius: 0.25em;
+    
 }
 
 .half {
@@ -87,7 +105,7 @@ li {
 
 .bold {
     display:inline;
-    font-size: 2.35vmin;
+    font-size: 18pt;
 }
 
 .logout {
@@ -101,7 +119,7 @@ li {
 .tasks-container {
     position: absolute;
     left: 15em;
-    margin-top: 12.5em;
+    margin-top: 3em;
     padding: 1em 1em;
     border: 2px solid black;
     border-radius: 1em;
