@@ -95,6 +95,7 @@ function changeAssignments(classIdx) {
     }
     for (let i = 0; i < account[classIdx]['assignments'].length; i++) {
         let newrow = document.createElement("tr")
+        
         let info = [
             account[classIdx]['assignments'][i]["name"],
             account[classIdx]['assignments'][i]['KU'][0]["get"] + "/" + account[classIdx]['assignments'][i]['KU'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['KU'][0]["weight"],
@@ -103,9 +104,20 @@ function changeAssignments(classIdx) {
             account[classIdx]['assignments'][i]['A'][0]["get"] + "/" + account[classIdx]['assignments'][i]['A'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['A'][0]["weight"],
             
         ]
+        type = [
+            "name", "KU", "T", "C", "A"
+        ]
+
         for (let j = 0; j < 5; j++) {
+            
             let newinfo = document.createElement('td')
             newinfo.innerHTML = info[j]
+            if (type != "name") {
+                if (account[classIdx]['assignments'][i][type[j]][0]["finished"] == false) {
+                    newinfo.innerHTML = " /" + account[classIdx]['assignments'][i][type[j]][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i][type[j]][0]["weight"]
+                    newinfo.style.background = "rgb(255, 200, 200)"
+                }
+            }
             newrow.appendChild(newinfo)
         }
         insidetable.appendChild(newrow)
@@ -122,16 +134,19 @@ logout.onclick = () => {
 // Sidebar open/close
 
 let tablecontainer = document.getElementById("tablecontainer")
+let infocontainer = document.getElementById("infocontainer")
 let opener = document.getElementById("opener")
 let opened = true
 opener.onclick = () => {
     if (opened == true) {
         tablecontainer.style.left = "5em"
         sidebar.style.left = "-10em"
+        infocontainer.style.marginLeft = "5em"
         opener.innerHTML = "&triangleright;"
         opened = false
     }
     else {
+        infocontainer.style.marginLeft = "13em"
         tablecontainer.style.left = "15em"
         sidebar.style.left = "0em"
         opener.innerHTML = "&triangleleft;"
