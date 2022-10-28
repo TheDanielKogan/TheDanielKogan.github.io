@@ -89,34 +89,38 @@ updateInfo(0)
 
 function changeAssignments(classIdx) {
     let insidetable = document.getElementById("table")
-    for (let i = 0; i < insidetable.children.length; i++) {
-        if (insidetable.lastChild.nodeName != "TBODY")
+    while (insidetable.lastChild.nodeName != "TBODY") {
+        
         insidetable.removeChild(insidetable.lastChild)
+
+        
     }
+    type = [
+        "name", "KU", "T", "C", "A"
+    ]
     for (let i = 0; i < account[classIdx]['assignments'].length; i++) {
         let newrow = document.createElement("tr")
         
-        let info = [
-            account[classIdx]['assignments'][i]["name"],
-            account[classIdx]['assignments'][i]['KU'][0]["get"] + "/" + account[classIdx]['assignments'][i]['KU'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['KU'][0]["weight"],
-            account[classIdx]['assignments'][i]['T'][0]["get"] + "/" + account[classIdx]['assignments'][i]['T'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['T'][0]["weight"],
-            account[classIdx]['assignments'][i]['C'][0]["get"] + "/" + account[classIdx]['assignments'][i]['C'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['C'][0]["weight"],
-            account[classIdx]['assignments'][i]['A'][0]["get"] + "/" + account[classIdx]['assignments'][i]['A'][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i]['A'][0]["weight"],
-            
-        ]
-        type = [
-            "name", "KU", "T", "C", "A"
-        ]
+        
+        
 
         for (let j = 0; j < 5; j++) {
-            
             let newinfo = document.createElement('td')
-            newinfo.innerHTML = info[j]
-            if (type != "name") {
-                if (account[classIdx]['assignments'][i][type[j]][0]["finished"] == false) {
-                    newinfo.innerHTML = " /" + account[classIdx]['assignments'][i][type[j]][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i][type[j]][0]["weight"]
-                    newinfo.style.background = "rgb(255, 200, 200)"
-                }
+            if (type[j] != "name") {
+                if (account[classIdx]['assignments'][i][type[j]] != undefined) {
+                    newinfo.innerHTML = (account[classIdx]['assignments'][i][type[j]][0]["get"]/account[classIdx]['assignments'][i][type[j]][0]["total"]*100).toFixed(0) + "%<br>Weight: " + account[classIdx]['assignments'][i][type[j]][0]["weight"]
+                    if (account[classIdx]['assignments'][i][type[j]][0]["finished"] == false) {
+                        newinfo.innerHTML = " /" + account[classIdx]['assignments'][i][type[j]][0]["total"] + "<br>Weight: " + account[classIdx]['assignments'][i][type[j]][0]["weight"]
+                        newinfo.style.background = "rgb(255, 200, 200)"
+                    }
+                    
+                } 
+                else {
+                    newinfo.innerHTML = " "
+                } 
+            }
+            else {
+                newinfo.innerHTML = account[classIdx]['assignments'][i]['name']
             }
             newrow.appendChild(newinfo)
         }
