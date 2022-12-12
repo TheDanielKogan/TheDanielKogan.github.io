@@ -26,7 +26,6 @@ if (account.length > 0){
        
         newitem.setAttribute("classidx", i.toString())
         newitem.onclick = function() {changeInfo(newitem)}
-        newitem.parent
         newitem.innerText = account[i]["name"]
         let progress = document.createElement("progress")
         progress.value = account[i]["overall_mark"]/100 ?? 0
@@ -40,13 +39,98 @@ if (account.length > 0){
     }
     publicclassidx = 0
 }
+// If there is an account
+let ul = sidebar.children[0]
+let container = document.createElement("div")
+container.className = "list-container"
+
+let newitem = document.createElement("li")
+newitem.onclick = function() {average(newitem)}
+newitem.innerText = "Overall Average"
+container.appendChild(newitem)
+ul.appendChild(container)
+}
+
+function average(element) {
+    for (let i = 0; i < element.parentElement.parentElement.children.length; i++) {
+        element.parentElement.parentElement.children[i].style.background = ""
+    
+    }
+    element.parentElement.style.background = "rgb(175, 225, 175)"
+
+    document.getElementById("code").innerHTML = "N/A"
+    document.getElementById("period").innerHTML = "N/A"
+    document.getElementById("room").innerHTML = "N/A"
+    document.getElementById("mark").innerHTML = "N/A"
+    document.getElementById("start").innerHTML = "N/A"
+    document.getElementById("end").innerHTML = "N/A"
+
+    let insidetable = document.getElementById("tablecontainer")
+    insidetable.style.scale = "0"
+    insidetable = document.getElementById("infocontainer")
+    insidetable.style.scale = "0"
+    updateAvg()
+
+}
+
+function updateAvg() {
+    let container = document.getElementById("avgcontainer")
+    container.textContent = ""
+
+    let avg = document.createElement("div")
+    avg.style.fontSize = "28pt"
+    avg.style.marginBottom = "0.75em"
+    avg.style.marginLeft = "7em"
+    let avgmark = 0
+    let sum = 0
+    for (let i = 0; i < account.length; i++) {
+        if (account[i]["overall_mark"] != null) {
+            avgmark += account[i]["overall_mark"]
+            sum++
+        }
+    }
+    avgmark = avgmark/sum
+    avgmark = parseFloat(avgmark).toFixed(2)
+    avg.innerHTML = avgmark + "%"
+    container.append(avg)
+
+    let text = document.createElement("div")
+    text.className = "subjectname"
+    text.innerHTML = "If it's green, it is included in calculations, if it's red, it's not included"
+    text.style.marginBottom = "0.75em"
+    container.append(text)
+    for (let i = 0; i < account.length; i++) {
+        let avgcontainer = document.getElementById("avgcontainer")
+        
+        let subjectcontainer = document.createElement("div")
+        subjectcontainer.className = "subject-container"
+        let square = document.createElement("div")
+        square.className = "included"
+        if (account[i]["overall_mark"] != null) {
+            square.style.background = "rgb(175, 245, 175)"
+        }
+        let text = document.createElement("div")
+        text.className = "subjectname"
+        text.innerHTML = account[i]["name"]
+        subjectcontainer.append(square)
+        subjectcontainer.append(text)
+        avgcontainer.append(subjectcontainer)
+
+
+    }
 }
 
 function changeInfo(element) {
+    let container = document.getElementById("avgcontainer")
+    container.textContent = ""
     for (let i = 0; i < element.parentElement.parentElement.children.length; i++) {
             element.parentElement.parentElement.children[i].style.background = ""
         
     }
+    let insidetable = document.getElementById("tablecontainer")
+    insidetable.style.scale = ""
+    insidetable = document.getElementById("infocontainer")
+    insidetable.style.scale = ""
     updateInfo(parseInt(element.getAttribute("classidx")))
     element.parentElement.style.background = "rgb(175, 225, 175)"
 }
